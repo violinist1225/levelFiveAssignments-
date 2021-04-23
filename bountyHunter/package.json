@@ -1,0 +1,26 @@
+{
+  "name": "bountyhunter",
+  "version": "1.0.0",
+  "description": "array of objects of removed targets",
+  "main": "bountyRouter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Maya P.",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/violinist1225/levelFiveAssignments.git"
+  },
+  "bugs": {
+    "url": "https://github.com/violinist1225/levelFiveAssignments/issues"
+  },
+  "homepage": "https://github.com/violinist1225/levelFiveAssignments#readme"
+}
