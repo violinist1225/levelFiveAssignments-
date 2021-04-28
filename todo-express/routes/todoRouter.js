@@ -39,11 +39,13 @@ todoRouter.get("/", (req, res) => {
     res.send(todos)
 })
 
-todoRouter.post("/", (req, res) =>
+todoRouter.post("/:todoId", (req, res) =>
 {
     const newTodo = req.body
+    console.log(req.body)
     todos.push(newTodo)
-    res.send("Successfully added ${} to the database!!")
+    res.send(`Successfully added to the database!!`)
+    console.log(todos)
 })
 
 
