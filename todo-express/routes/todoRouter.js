@@ -65,8 +65,8 @@ todoRouter.delete("/:todoId", (req, res) =>
 
 todoRouter.put("/:todoId", (req, res) => {
     const todoId = req.params.todoId
-    const updatedTodo = req
-    console.log(req)
+    const updatedTodo = req.body
+    console.log(updatedTodo)
     const todoIndex = todos.findIndex(todo=> (todo._id === todoId))
     const updatedTodos = Object.assign(todos[todoIndex], updatedTodo)
     console.log(todoId, todoIndex, updatedTodo)
