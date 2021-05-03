@@ -7,7 +7,7 @@ export default function Form(){
     const initInputs = {
         firstName: "", lastName: "", bountyAmount: "", living: ""
     }
-    const [inputs, setInputs] = useState('')
+    const [inputs, setInputs] = useState("")
 
     function handleChange(e){
         const{name, value} = e.target
