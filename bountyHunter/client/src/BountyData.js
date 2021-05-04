@@ -5,8 +5,8 @@ import {BountyContext} from "./Context"
 import AddBountyForm from "./AddBountyForm"
 
 export default function BountyData(){
-    const{editToggle, setEditToggle} = useState(false)
-    const {getData, bounties, handleDelete} = useContext(BountyContext)
+    const[editToggle, setEditToggle] = useState(false)
+    const {getData, bounties, handleDelete, handleEdit} = useContext(BountyContext)
     useEffect(() => {
         // console.log("UseEffect is running!", BountyContext)
         getData()
@@ -27,20 +27,45 @@ const displayBounties = bounties.map(bounty => {
                 <h3>{bounty.bountyAmount}</h3>
                 <h2>{bounty.type}</h2>          
                 <button onClick={() =>handleDelete(bounty._id)}> Delete Bounty!</button>
-            <>
+        
             <AddBountyForm 
-                firstName = {firstName}
-                lastName = {lastName}
-                living = {living}
-                type = {type}
+                firstName = {bounty.firstName}
+                lastName = {bounty.lastName}
+                living = {bounty.living}
+                type = {bounty.type}
                 buttonText = "Submit Edit"
+                handleEdit={handleEdit}
             />
-            <button onClick={
+        <button 
                 //if edit = true, show form . If false, then keep code
-                ()=>handleEdit(bounty._id)}>Edit Bounty!
-                {/* onClick = {()=> setEditToggle(prevToggle =>!prevToggle)} */}
+                //()=>handleEdit(bounty._id)}>Edit Bounty!
+                onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
+                    Edit
+            </button >
+            </>
+
+            
+        :
+            
+            <>
+            
+            <AddBountyForm 
+                firstName = {bounty.firstName}
+                lastName = {bounty.lastName}
+                living = {bounty.living}
+                type = {bounty.type}
+                buttonText = "Submit Edit"
+                handleEdit={handleEdit}
+                editToggle={editToggle}
+
+            />
+            <button onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
+                Cancel
             </button>
+
+            </>
             }
+            
         </div>
     )
 })

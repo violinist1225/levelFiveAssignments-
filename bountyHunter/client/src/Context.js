@@ -39,20 +39,28 @@ function handleDelete(bountyId){
   function handleEdit(bountyId){
     axios.put(`bounties/${bountyId}`)
   .then(res => setBounties(prevBounties => {
-     prevBounties.filter(aBounty => aBounty._id !== bountyId ?
-      aBounty: res.data
+     const filteredBounty = prevBounties.find(aBounty => aBounty._id === bountyId
       )
+      const indexFinder = prevBounties.indexOf(filteredBounty)
+      prevBounties[indexFinder] = res.data
+
+      return prevBounties
     
   }) )
   .catch (err => console.log(err))
   }
 
-  }
+
+
   return (
     <BountyContext.Provider value={{getData, addBounty, handleDelete, bounties, handleEdit }}>
     {props.children}
     </BountyContext.Provider>
 )
+
+
+  }
+
 
 export {BountyProvider, BountyContext}
    

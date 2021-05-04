@@ -24,7 +24,8 @@ export default function AddBountyForm(props){
     // }
     function handleSubmit(e){
         e.preventDefault()
-        addBounty(inputs) //props.submit(inputs)?? refactor
+       //props.editToggle?props.handleEdit(props._id): addBounty(inputs) //props.submit(inputs)?? refactor
+       addBounty(inputs)
         setInputs(initInputs)
     }
     
