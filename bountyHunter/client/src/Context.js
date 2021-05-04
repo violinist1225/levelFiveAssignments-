@@ -13,25 +13,46 @@ export default function BountyProvider(props) {
     .catch(err => console.log(err))
   } 
 
-  // function delete(){
-
-  // }
-
-  // function postFunction(){
-
-
-  // }
-
-
-  // function editFunction(){
+  function addBounty(newBounty){
+    axios.post("/bounties", newBounty)
+    .then(res =>
+    setBounties(prevBounties => 
+    [...prevBounties, res.data]
+    ))
+    .catch(err => console.log(err))
+}
 
 
-  // }
+function handleDelete(bountyId){
+  axios.delete(`bounties/${bountyId}`)
+  // .then(res => console.log(res))
+  .then(res => setBounties(prevBounties => {
+    const updatedArray = prevBounties.filter(aBounty => aBounty._id !== bountyId)
+      return updatedArray
+  }) )
+  .catch (err => console.log(err))
+}
+
+  
+
+
+  function handleEdit(bountyId){
+    axios.put(`bounties/${bountyId}`)
+  .then(res => setBounties(prevBounties => {
+     prevBounties.filter(aBounty => aBounty._id !== bountyId ?
+      aBounty: res.data
+      )
+    
+  }) )
+  .catch (err => console.log(err))
+  }
+
+  }
   return (
-    <BountyContext.Provider value={{getData, bounties }}>
+    <BountyContext.Provider value={{getData, addBounty, handleDelete, bounties, handleEdit }}>
     {props.children}
     </BountyContext.Provider>
-)}
+)
 
 export {BountyProvider, BountyContext}
    

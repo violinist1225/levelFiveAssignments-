@@ -1,11 +1,13 @@
 import React from 'react'
 import BountyData from './BountyData'
-import Form from './Form'
+import AddBountyForm from './AddBountyForm'
 
 export default function App(){
     return(
         <div>
-            <Form />
+            <AddBountyForm
+            buttonText = "Add Bounty"
+            />
             <BountyData  />
         </div>
     )

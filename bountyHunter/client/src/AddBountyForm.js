@@ -1,13 +1,14 @@
-import React from 'react'
-import { useEffect, useContext } from "react/cjs/react.development"
+import axios from 'axios'
+import React, {useContext, useState} from 'react'
 import {BountyContext} from "./Context"
 
 
-export default function Form(){
+export default function AddBountyForm(props){
     const initInputs = {
-        firstName: "", lastName: "", bountyAmount: "", living: ""
+        firstName: props.firstName || "", lastName: props.lastName || "", bountyAmount: props.bountyAmount || "", living: props.living || ""
     }
-    const [inputs, setInputs] = useState("")
+    const [inputs, setInputs] = useState(initInputs)
+    const {addBounty} = useContext(BountyContext)
 
     function handleChange(e){
         const{name, value} = e.target
@@ -16,27 +17,20 @@ export default function Form(){
         }))
     }
     
-    function handleSumbit(e){
-        e.preventDefault()
-        setInputs(initInputs)
-
-
-    }
-
-    // function handleDelete(){
-
-    // }
 
 
     // function handleEdit(){
 
     // }
-
-const {getData} = useContext(BountyContext)
+    function handleSubmit(e){
+        e.preventDefault()
+        addBounty(inputs) //props.submit(inputs)?? refactor
+        setInputs(initInputs)
+    }
     
     
     return(
-<form>
+<form onSubmit = {handleSubmit}>
         <input type="text"
          name="firstName" 
          value={inputs.firstName} 
@@ -61,7 +55,7 @@ const {getData} = useContext(BountyContext)
          onChange = {handleChange}
          placeholder="Is Living?" />
 
-         <button>Add Movie</button>
+         <button>  {props.buttonText}</button>
 
 </form>
 
