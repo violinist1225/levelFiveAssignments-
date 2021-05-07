@@ -1,14 +1,13 @@
-import axios from 'axios'
 import React, {useContext, useState} from 'react'
 import {BountyContext} from "./Context"
 
 
 export default function AddBountyForm(props){
     const initInputs = {
-        firstName: props.firstName || "", lastName: props.lastName || "", bountyAmount: props.bountyAmount || "", living: props.living || ""
+        firstName: props.firstName || "", lastName: props.lastName || "", bountyAmount: props.bountyAmount || "", living: props.living || "", _id: props._id
     }
     const [inputs, setInputs] = useState(initInputs)
-    const {addBounty} = useContext(BountyContext)
+    const {addBounty, handleEdit} = useContext(BountyContext)
 
     function handleChange(e){
         const{name, value} = e.target
@@ -23,10 +22,14 @@ export default function AddBountyForm(props){
 
     // }
     function handleSubmit(e){
-        e.preventDefault()
        //props.editToggle?props.handleEdit(props._id): addBounty(inputs) //props.submit(inputs)?? refactor
-       addBounty(inputs)
-        setInputs(initInputs)
+       if(props.buttonText==="Submit Edit"){
+           handleEdit(inputs._id, inputs)
+       }else{
+           addBounty(inputs)
+            setInputs(initInputs)
+           
+       }
     }
     
     

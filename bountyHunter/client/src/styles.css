@@ -1,0 +1,54 @@
+.hidden{
+    display: none;
+}
+
+input{
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 5px;
+
+}
+
+button{
+    padding:5px;
+    border-radius: 4px;
+    font-size: 23px;
+}
+
+.delete-button{
+    background-color: cornflowerblue;
+    color: whitesmoke;
+
+}
+
+.edit-button{
+    background-color:firebrick;
+    color: whitesmoke;
+
+}
+
+.movie-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 32px;
+}
+
+.title-one{
+    color: #d24ed2
+
+}
+
+.para{
+    font-size: 28px;
+    color: blueviolet;
+
+
+}
+
+.title-two{
+    font-size: 35px;
+    color: rgb(66, 134, 66);
+
+}

@@ -36,15 +36,12 @@ function handleDelete(bountyId){
   
 
 
-  function handleEdit(bountyId){
-    axios.put(`bounties/${bountyId}`)
+  function handleEdit(bountyId, data){
+    axios.put(`bounties/${bountyId}`, data)
   .then(res => setBounties(prevBounties => {
-     const filteredBounty = prevBounties.find(aBounty => aBounty._id === bountyId
+     const updatedBounty = prevBounties.map(aBounty => aBounty._id === bountyId?data:aBounty
       )
-      const indexFinder = prevBounties.indexOf(filteredBounty)
-      prevBounties[indexFinder] = res.data
-
-      return prevBounties
+      return updatedBounty
     
   }) )
   .catch (err => console.log(err))
@@ -60,6 +57,22 @@ function handleDelete(bountyId){
 
 
   }
+
+
+  // axios.put(`bounties/${bountyId}`, data)
+  // .then(res => setBounties(prevBounties => {
+  //    const filteredBounty = prevBounties.find(aBounty => aBounty._id === bountyId
+  //     )
+  //     const indexFinder = prevBounties.indexOf(filteredBounty)
+  //     prevBounties[indexFinder] = res.data
+
+  //     return prevBounties
+    
+  // }) )
+  // .catch (err => console.log(err))
+  // }
+
+
 
 
 export {BountyProvider, BountyContext}

@@ -10,45 +10,27 @@ export default function BountyData(){
     useEffect(() => {
         // console.log("UseEffect is running!", BountyContext)
         getData()
-
 // eslint-disable-next-line 
-}, [])
-
-
+}, [editToggle])
 
 const displayBounties = bounties.map(bounty => {
     console.log(bounty)
     return(
-        <div>
-            {!editToggle ?
+        <div >
+            
             <>
-                <h1>{bounty.firstName} {bounty.lastName} </h1>
-                <p>{bounty.living ? "Is Living": "Is Not Living"}</p>
-                <h3>{bounty.bountyAmount}</h3>
+                <h1 className="title-one">{bounty.firstName} {bounty.lastName} </h1>
+                <p className="para">{bounty.living ? "Is Living": "Is Not Living"}</p>
+                <h3 className="title-two">{bounty.bountyAmount}</h3>
                 <h2>{bounty.type}</h2>          
-                <button onClick={() =>handleDelete(bounty._id)}> Delete Bounty!</button>
-        
-            <AddBountyForm 
-                firstName = {bounty.firstName}
-                lastName = {bounty.lastName}
-                living = {bounty.living}
-                type = {bounty.type}
-                buttonText = "Submit Edit"
-                handleEdit={handleEdit}
-            />
-        <button 
-                //if edit = true, show form . If false, then keep code
-                //()=>handleEdit(bounty._id)}>Edit Bounty!
+                <button className="delete-button" onClick={() =>handleDelete(bounty._id)}> Delete Bounty!</button>
+                <button className="edit-button"
+                
                 onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
                     Edit
             </button >
-            </>
 
-            
-        :
-            
-            <>
-            
+            <div className={editToggle?"form":"hidden"} >
             <AddBountyForm 
                 firstName = {bounty.firstName}
                 lastName = {bounty.lastName}
@@ -56,15 +38,20 @@ const displayBounties = bounties.map(bounty => {
                 type = {bounty.type}
                 buttonText = "Submit Edit"
                 handleEdit={handleEdit}
-                editToggle={editToggle}
+                _id={bounty._id}
 
             />
+            
             <button onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
                 Cancel
             </button>
-
+        </div>
+        
             </>
-            }
+
+
+            
+            
             
         </div>
     )
