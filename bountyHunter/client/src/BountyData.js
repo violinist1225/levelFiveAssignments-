@@ -16,15 +16,16 @@ export default function BountyData(){
 const displayBounties = bounties.map(bounty => {
     console.log(bounty)
     return(
-        <div >
+        <>
             
-            <>
-                <h1 className="title-one">{bounty.firstName} {bounty.lastName} </h1>
-                <p className="para">{bounty.living ? "Is Living": "Is Not Living"}</p>
-                <h3 className="title-two">{bounty.bountyAmount}</h3>
-                <h2>{bounty.type}</h2>          
-                <button className="delete-button" onClick={() =>handleDelete(bounty._id)}> Delete Bounty!</button>
-                <button className="edit-button"
+                <div className="card">
+                    <h1 className="title-one">{bounty.firstName} {bounty.lastName} </h1>
+                    <p className="para">{bounty.living ? "Is Living": "Is Not Living"}</p>
+                    <h3 className="title-two">{bounty.bountyAmount}</h3>
+                    <h2>{bounty.type}</h2> 
+                </div>         
+                <button className={!editToggle?"delete-button":"hidden"} onClick={() =>handleDelete(bounty._id)}> Delete Bounty!</button>
+                <button className={!editToggle?"edit-button":"hidden"}
                 
                 onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
                     Edit
@@ -45,21 +46,14 @@ const displayBounties = bounties.map(bounty => {
             <button onClick = {()=> setEditToggle(prevToggle =>!prevToggle)}>
                 Cancel
             </button>
-        </div>
-        
-            </>
-
-
-            
-            
-            
-        </div>
+        </div>    
+        </>
     )
 })
     return(
-        <div>
+        <>
             {displayBounties}
-        </div>
+        </>
     )
 
 

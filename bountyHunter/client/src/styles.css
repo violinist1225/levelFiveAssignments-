@@ -52,3 +52,22 @@ button{
     color: rgb(66, 134, 66);
 
 }
+.card{
+    background-color: #d6e542;
+    width: 30%;
+    display: flex;
+    padding: 2%;
+    margin: 2%;
+    align-items: center;
+    border-radius: 50%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.app{
+    display: flex;
+    background-color: black;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+}

@@ -4,7 +4,7 @@ import AddBountyForm from './AddBountyForm'
 
 export default function App(){
     return(
-        <div>
+        <div className="app">
             <AddBountyForm
             buttonText = "Add Bounty"
             />
