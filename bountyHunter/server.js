@@ -6,6 +6,17 @@ const morgan = require('morgan')
 
 app.use(morgan('dev'))
 
+// mongoose.connect('mongodb://localhost: 27017/bountiesdb',
+
+// {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false
+// }, 
+// () => console.log("Connected to the DB")
+
+// )
 
 
 app.use("/bounties", require("./bountyRouter")) 
