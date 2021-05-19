@@ -2,6 +2,7 @@ const express = require('express')
 const bountyRouter = express.Router()
 const Bounty = require('./models/bounty.js')
 const {v4: uuidv4} = require('uuid')
+const { send } = require('process')
 
 
 const bounties = [
@@ -33,16 +34,37 @@ const bounties = [
 //all methods structure (get, post etc) must go in order because pre-built
 //server PROCESSES CRUD methods, whereas frontend/client gives requests.
 
-bountyRouter.get("/", (req, res) => {
-    res.send(bounties)
+// bountyRouter.get("/", (req, res) => {
+//     res.send(bounties)
+// })
+
+bountyRouter.get("/", (req, res, next) => {
+    bounties.find((err, bounty) =>{
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(bounties)
+    })
 })
 
-bountyRouter.post("/", (req, res) =>
+bountyRouter.post("/", (req, res, next) =>
 {
-    req.body._id = uuidv4()
-    const newBounty = req.body
-    bounties.push(newBounty)
-    res.send(newBounty)
+    const newBounty = new Bounty(req.body)
+    newBounty.save((err, savedBounty) =>
+    {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(savedBounty)
+
+
+    })
+    // req.body._id = uuidv4()
+    // const newBounty = req.body
+    // bounties.push(newBounty)
+    // res.send(newBounty)
 })
 
 
