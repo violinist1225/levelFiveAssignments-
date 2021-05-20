@@ -14,7 +14,7 @@ const bountySchema = new Schema({
     living : Boolean,
     bountyAmount: Number,
     type:String,
-    _id : uuidv4(),
+    // _id : uuidv4(),
 })
 
     module.exports= mongoose.model("Bounty", bountySchema)

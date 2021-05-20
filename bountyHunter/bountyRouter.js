@@ -3,6 +3,7 @@ const bountyRouter = express.Router()
 const Bounty = require('./models/bounty.js')
 const {v4: uuidv4} = require('uuid')
 const { send } = require('process')
+const bounty = require('./models/bounty.js')
 
 
 const bounties = [
@@ -30,14 +31,6 @@ const bounties = [
     }
 ]
 
-
-//all methods structure (get, post etc) must go in order because pre-built
-//server PROCESSES CRUD methods, whereas frontend/client gives requests.
-
-// bountyRouter.get("/", (req, res) => {
-//     res.send(bounties)
-// })
-
 bountyRouter.get("/", (req, res, next) => {
     bounties.find((err, bounty) =>{
         if(err){
@@ -61,36 +54,34 @@ bountyRouter.post("/", (req, res, next) =>
 
 
     })
-    // req.body._id = uuidv4()
-    // const newBounty = req.body
-    // bounties.push(newBounty)
-    // res.send(newBounty)
+})
+bountyRouter.delete("/:bountyId", (req, res, next) =>
+{currentBounty.findOneAndDelete({_id: req.params.bountyId},(err, deletedItem) =>
+    {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(200).send(`Successfully deleted ${deletedItem.firstName} from the database`)
+})
 })
 
 
-bountyRouter.delete("/:bountyId", (req, res) =>
-{  // console.log(req)
-    const bountyId = req.params.bountyId
-    const bountyIndex = bounties.findIndex(bounty=> {
-        if(bounty._id === bountyId){
-            return true
-        }    
-    })
-    bounties.splice(bountyIndex, 1)
-        res.send(`Successfully DELETED a person from the database!!`)
+bountyRouter.put("/:bountyId", (req, res, next) => {
+    bounty.findOneAndUpdate({_id: req.params.bountyId},
+        req.body, //update this obj with this data
+         {new: true}, //sends back updated version 
+         (err, updatedItem) =>
+    {
+        if(err){
+            res.status(500)
+            return next(err)
+        }
+        return res.status(201).send(`Successfully updated ${updatedItem.firstName} in the database`)
 })
 
-
-bountyRouter.put("/:bountyId", (req, res) => {
-    const bountyId = req.params.bountyId
-    const updatedObject = req.body
-    console.log(updatedObject)
-    const bountyIndex = bounties.findIndex(bounty=> (bounty._id === bountyId))
-    const updatedBounty = Object.assign(bounties[bountyIndex], updatedObject)
-    res.send(updatedBounty)
 })
     
- 
    
 
 

@@ -1,0 +1,37 @@
+Before MongoDb database integration, the code for CRUD
+
+//all methods structure (get, post etc) must go in order because pre-built
+//server PROCESSES CRUD methods, whereas frontend/client gives requests.
+
+// bountyRouter.get("/", (req, res) => {
+//     res.send(bounties)
+// })
+
+
+Delete:
+// console.log(req)
+    // const bountyId = req.params.bountyId
+    // const bountyIndex = bounties.findIndex(bounty=> {
+    //     if(bounty._id === bountyId){
+    //         return true
+    //     }    
+    // })
+    // bounties.splice(bountyIndex, 1)
+    //     res.send(`Successfully DELETED a person from the database!!`)
+
+EDIT:
+// const bountyId = req.params.bountyId
+    // const updatedObject = req.body
+    // console.log(updatedObject)
+    // const bountyIndex = bounties.findIndex(bounty=> (bounty._id === bountyId))
+    // const updatedBounty = Object.assign(bounties[bountyIndex], updatedObject)
+    // res.send(updatedBounty)
+
+    
+post
+// req.body._id = uuidv4()
+    // const newBounty = req.body
+    // bounties.push(newBounty)
+    // res.send(newBounty)
+})
+
